@@ -15,31 +15,34 @@ static const int systraypinningfailfirst =
 static const int showsystray = 1; /* 0 means no systray */
 static const int showbar = 1;     /* 0 means no bar */
 static const int topbar = 0;      /* 0 means bottom bar */
-static const char *fonts[] = {"monospace:size=10"};
-static const char dmenufont[] = "monospace:size=10";
-static const char col_gray1[] = "#222222";
-static const char col_gray2[] = "#444444";
-static const char col_gray3[] = "#bbbbbb";
-static const char col_gray4[] = "#eeeeee";
-static const char col_cyan[] = "#005577";
+static const char *fonts[] = {
+    "SauceCodePro Nerd Font "
+    "Mono:weight=bold:size=9:antialias=true:hinting=true",
+    "Mononoki:size=9:antialias=true:autohint=true",
+    "Hack:size=8:antialias=true:autohint=true",
+    "JoyPixels:size=10:antialias=true:autohint=true"};
+
+static const char col_1[] = "#282c34"; /* background color of bar */
+static const char col_2[] = "#282c34"; /* border color unfocused windows */
+static const char col_3[] = "#d7d7d7";
+static const char col_4[] =
+    "#924441"; /* border color focused windows and tags */
+
 static const char *colors[][3] = {
     /*               fg         bg         border   */
-    [SchemeNorm] = {col_gray3, col_gray1, col_gray2},
-    [SchemeSel] = {col_gray4, col_cyan, col_cyan},
+    [SchemeNorm] = {col_3, col_1, col_2},
+    [SchemeSel] = {col_3, col_4, col_4},
 };
 
 /* tagging */
 static const char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
 static const Rule rules[] = {
-    /* xprop(1):
-     *	WM_CLASS(STRING) = instance, class
-     *	WM_NAME(STRING) = title
+    /* class      instance    title       tags mask     isfloating   monitor
      */
-    /* class      instance    title       tags mask     isfloating   monitor */
-    {"Gimp", NULL, NULL, 0, 1, -1},
-    {"Firefox", NULL, NULL, 1 << 8, 0, -1},
-};
+    {"dialog", NULL, NULL, 0, 1, -1},  {"confirm", NULL, NULL, 0, 1, -1},
+    {"error", NULL, NULL, 0, 1, -1},   {NULL, NULL, "Calculator", 0, 1, -1},
+    {"discord", NULL, NULL, 2, 0, -1}, {"YouTube Music", NULL, NULL, 2, 0, -1}};
 
 /* layout(s) */
 static const Layout layouts[] = {
@@ -65,11 +68,43 @@ static const int lockfullscreen =
 /* commands */
 static const char *roficmd[] = {"rofi", "-show", "combi", "-show-icons", NULL};
 static const char *termcmd[] = {"alacritty", NULL};
+static const char *flameshotcmd[] = {"flameshot", "gui", NULL};
+static const char *codecmd[] = {"code", NULL};
+static const char *browsercmd[] = {"chromium", NULL};
+static const char *discordcmd[] = {"discord", NULL};
+static const char *musiccmd[] = {"youtube-music", NULL};
+static const char *nextcmd[] = {"playerctl", "next", NULL};
+static const char *previouscmd[] = {"playerctl", "previous", NULL};
+static const char *stopcmd[] = {"playerctl", "stop", NULL};
+static const char *playpausecmd[] = {"playerctl", "play-pause", NULL};
+static const char *calculatorcmd[] = {"gnome-calculator", NULL};
 
 static Key keys[] = {
-    /* modifier                     key        function        argument */
+    /* modifier
+                     key        function        argument */
+    // MAIN
     {MODKEY | ShiftMask, XK_Return, spawn, {.v = roficmd}},
     {MODKEY, XK_Return, spawn, {.v = termcmd}},
+    {MODKEY | ShiftMask, XK_q, quit, {0}},
+    {MODKEY | ShiftMask, XK_r, quit, {1}},
+
+    // APPLICATIONS
+    {MODKEY | ShiftMask, XK_s, spawn, {.v = flameshotcmd}},
+    {MODKEY | ShiftMask, XK_p, spawn, {.v = codecmd}},
+    {MODKEY | ShiftMask, XK_b, spawn, {.v = browsercmd}},
+    {MODKEY | ShiftMask, XK_d, spawn, {.v = discordcmd}},
+    {MODKEY | ShiftMask, XK_m, spawn, {.v = musiccmd}},
+
+    // Audio
+    {0, XF86XK_AudioNext, spawn, {.v = nextcmd}},
+    {0, XF86XK_AudioPrev, spawn, {.v = previouscmd}},
+    {0, XF86XK_AudioPlay, spawn, {.v = playpausecmd}},
+    {0, XF86XK_AudioStop, spawn, {.v = stopcmd}},
+    {0, XF86XK_Calculator, spawn, {.v = calculatorcmd}},
+    {MODKEY | ShiftMask, XK_Right, spawn, {.v = nextcmd}},
+    {MODKEY | ShiftMask, XK_Left, spawn, {.v = previouscmd}},
+
+    // NAVIGATION
     {MODKEY, XK_b, togglebar, {0}},
     {MODKEY, XK_j, focusstack, {.i = +1}},
     {MODKEY, XK_k, focusstack, {.i = -1}},
@@ -79,7 +114,7 @@ static Key keys[] = {
     {MODKEY, XK_l, setmfact, {.f = +0.05}},
     {MODKEY | ShiftMask, XK_j, movestack, {.i = +1}},
     {MODKEY | ShiftMask, XK_k, movestack, {.i = -1}},
-    {MODKEY, XK_Return, zoom, {0}},
+    {MODKEY, XK_z, zoom, {0}},
     {MODKEY, XK_Tab, view, {0}},
     {MODKEY | ShiftMask, XK_c, killclient, {0}},
     {MODKEY | ShiftMask, XK_space, togglefloating, {0}},
@@ -91,8 +126,7 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_period, tagmon, {.i = +1}},
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
-            TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_q, quit, {0}},
-};
+            TAGKEYS(XK_9, 8)};
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
