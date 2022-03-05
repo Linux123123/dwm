@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #starting utility applications at boot time
+dwmblocks &
 nm-applet &
 thunar --daemon &
 numlockx on &
