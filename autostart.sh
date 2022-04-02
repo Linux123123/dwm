@@ -11,6 +11,7 @@ polkit-dumb-agent &
 dunst &
 copyq &
 flameshot &
+qpwgraph -m /home/linux123123/Projects/good.qpwgraph &
 /home/linux123123/.local/bin/hyperion-x11 -a 192.168.0.131:19400 -s 25 &
 
 eval $(gnome-keyring-daemon --start)
