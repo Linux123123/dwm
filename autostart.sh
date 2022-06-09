@@ -1,8 +1,6 @@
 #!/bin/bash
 
 nitrogen --restore &
-
-#starting utility applications at boot time
 dwmblocks &
 nm-applet &
 thunar --daemon &
@@ -11,12 +9,11 @@ polkit-dumb-agent &
 dunst &
 copyq &
 flameshot &
-qpwgraph -m /home/linux123123/Projects/good.qpwgraph &
 /home/linux123123/.local/bin/hyperion-x11 -a 192.168.0.131:19400 -s 25 &
+discord &
+youtube-music &
+blueman-applet &
+nextcloud --background &
 
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
-
-discord &
-youtube-music &
-nextcloud --background &
