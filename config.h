@@ -41,7 +41,7 @@ static const Rule rules[] = {
     /* class      instance    title       tags mask     isfloating   monitor
      */
     {"dialog", NULL, NULL, 0, 1, -1},  {"confirm", NULL, NULL, 0, 1, -1},
-    {"error", NULL, NULL, 0, 1, -1},   {NULL, NULL, "Calculator", 0, 1, -1},
+    {"error", NULL, NULL, 0, 1, -1},   {"qalculate-gtk", NULL, NULL, 0, 1, -1},
     {"discord", NULL, NULL, 2, 0, -1}, {"YouTube Music", NULL, NULL, 2, 0, -1}};
 
 /* layout(s) */
@@ -77,7 +77,7 @@ static const char *nextcmd[] = {"playerctl", "next", NULL};
 static const char *previouscmd[] = {"playerctl", "previous", NULL};
 static const char *stopcmd[] = {"playerctl", "stop", NULL};
 static const char *playpausecmd[] = {"playerctl", "play-pause", NULL};
-static const char *calculatorcmd[] = {"gnome-calculator", NULL};
+static const char *calculatorcmd[] = {"qalculate-gtk", NULL};
 
 static Key keys[] = {
     /* modifier
