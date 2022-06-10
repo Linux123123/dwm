@@ -14,6 +14,7 @@ discord &
 youtube-music &
 blueman-applet &
 nextcloud --background &
+mailspring -b &
 
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
