@@ -1,7 +1,7 @@
 #!/bin/bash
 
+/home/linux123123/.fehbg &
 numlockx on &
-nitrogen --restore &
 dwmblocks &
 nm-applet &
 polkit-dumb-agent &
