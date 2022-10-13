@@ -7,11 +7,11 @@ static const unsigned int systraypinning =
     1; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
           X */
 static const unsigned int systrayonleft =
-    0; /* 0: systray in the right corner, >0: systray on left of status text */
+    0;                                        /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2; /* systray spacing */
 static const int systraypinningfailfirst =
-    1; /* 1: if pinning fails, display systray on the first monitor, False:
-          display systray on the last monitor*/
+    1;                            /* 1: if pinning fails, display systray on the first monitor, False:
+                                     display systray on the last monitor*/
 static const int showsystray = 1; /* 0 means no systray */
 static const int showbar = 1;     /* 0 means no bar */
 static const int topbar = 0;      /* 0 means bottom bar */
@@ -40,9 +40,12 @@ static const char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 static const Rule rules[] = {
     /* class      instance    title       tags mask     isfloating   monitor
      */
-    {"dialog", NULL, NULL, 0, 1, -1},  {"confirm", NULL, NULL, 0, 1, -1},
-    {"error", NULL, NULL, 0, 1, -1},   {"qalculate-gtk", NULL, NULL, 0, 1, -1},
-    {"discord", NULL, NULL, 2, 0, -1}, {"YouTube Music", NULL, NULL, 2, 0, -1}};
+    {"dialog", NULL, NULL, 0, 1, -1},
+    {"confirm", NULL, NULL, 0, 1, -1},
+    {"error", NULL, NULL, 0, 1, -1},
+    {"qalculate-gtk", NULL, NULL, 0, 1, -1},
+    {"armcord", NULL, NULL, 2, 0, -1},
+    {"YouTube Music", NULL, NULL, 2, 0, -1}};
 
 /* layout(s) */
 static const Layout layouts[] = {
@@ -59,11 +62,11 @@ static const int lockfullscreen =
 
 /* key definitions */
 #define MODKEY Mod4Mask
-#define TAGKEYS(KEY, TAG)                                                      \
-  {MODKEY, KEY, view, {.ui = 1 << TAG}},                                       \
-      {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},               \
-      {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},                        \
-      {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
+#define TAGKEYS(KEY, TAG)                                          \
+    {MODKEY, KEY, view, {.ui = 1 << TAG}},                         \
+        {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}}, \
+        {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},          \
+        {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
 
 /* commands */
 static const char *roficmd[] = {"rofi", "-show", "combi", "-show-icons", NULL};
@@ -71,7 +74,7 @@ static const char *termcmd[] = {"alacritty", NULL};
 static const char *flameshotcmd[] = {"flameshot", "gui", NULL};
 static const char *codecmd[] = {"code", NULL};
 static const char *browsercmd[] = {"chromium", NULL};
-static const char *discordcmd[] = {"discord", NULL};
+static const char *discordcmd[] = {"armcord", NULL};
 static const char *musiccmd[] = {"youtube-music", NULL};
 static const char *nextcmd[] = {"playerctl", "next", NULL};
 static const char *previouscmd[] = {"playerctl", "previous", NULL};
