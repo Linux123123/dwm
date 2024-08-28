@@ -44,7 +44,7 @@ static const Rule rules[] = {
     {"confirm", NULL, NULL, 0, 1, -1},
     {"error", NULL, NULL, 0, 1, -1},
     {"qalculate-gtk", NULL, NULL, 0, 1, -1},
-    {"armcord", NULL, NULL, 2, 0, -1},
+    {"vesktop", NULL, NULL, 2, 0, -1},
     {"YouTube Music", NULL, NULL, 2, 0, -1}};
 
 /* layout(s) */
